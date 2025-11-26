@@ -44,6 +44,7 @@ class Matrix {
                 this.data[i][j] = Math.random()*2 - 1;
             }
         }
+        return this;
     }
     numAdd(n: number) {
         for (let i = 0; i< this.rows; i++) {

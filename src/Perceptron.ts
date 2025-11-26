@@ -1,4 +1,5 @@
 import {Matrix} from './Matrix.ts';
+var timesTwenty = (n: number): number => n*10;
 
 let datasetLength = 5; // TODO: import dataset
 var sigmoid = (n: number): number => 1 / (1 + Math.exp(-n));
@@ -19,7 +20,7 @@ class NeuralNetwork {
         this.biases[0] = new Matrix(this.middleLayer, 1)
         this.biases[1] = new Matrix(this.outputLayer, 1)
         for (let i = 0; i< this.biases.length; i++) {
-            this.biases[i].randomize();
+            this.biases[i].randomize().map(timesTwenty);
         }
         this.weights = Array(2)
         this.weights[0] = new Matrix(this.middleLayer,this.activations.rows);
@@ -35,5 +36,9 @@ class NeuralNetwork {
         }
         return this.activations;
     }
+    backpropogate() {
+        //EVEN MORE PAINFUL MATH STUFFS INCOMING
+    }
 }
+
 
