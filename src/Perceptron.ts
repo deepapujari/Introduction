@@ -1,5 +1,5 @@
 import {Matrix} from './Matrix.ts';
-var timesTwenty = (n: number): number => n*10;
+var timesTwenty = (n: number): number => n*20;
 
 let datasetLength = 5; // TODO: import dataset
 var sigmoid = (n: number): number => 1 / (1 + Math.exp(-n));
@@ -36,9 +36,15 @@ class NeuralNetwork {
         }
         return this.activations;
     }
-    backpropogate() {
-        //EVEN MORE PAINFUL MATH STUFFS INCOMING
+    backpropogate(targets: Matrix) {
+        let outputs = this.feedforward();
+        //Error calculation
+        // ERROR = TARGETS - OUTPUTS; targets for this will be the labels from MNIST.
+        let error = targets.subtract(outputs);
+        console.table(outputs.data);
+        console.table(targets.data);
+        console.table(error.data);
     }
 }
 
-
+// TODO: Figure out how to make the html file use this code.

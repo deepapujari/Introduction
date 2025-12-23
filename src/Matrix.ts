@@ -1,3 +1,4 @@
+
 class Matrix {
     rows: number;
     cols: number;
@@ -5,7 +6,7 @@ class Matrix {
     constructor(rows:number, cols:number) {
         this.rows = rows;
         this.cols = cols;
-        this.data = Array.from({ length: this.rows }, () => new Array(this.cols).fill(0));
+        this.data = Array(this.rows).fill(Array(this.cols).fill(0));
     }
     map (fn: Function) {
         for (let i = 0; i< this.rows; i++) {
@@ -69,10 +70,18 @@ class Matrix {
         }
         return this;
     }
-    subtract(num: number){
+    numSub(num: number){
         for (let i = 0; i< this.rows; i++) {
             for (let j = 0; j< this.cols; j++) {
                 this.data[i][j] -= num;
+            }
+        }
+        return this;
+    }
+    subtract(n: Matrix) {
+        for (let i = 0; i< this.rows; i++) {
+            for (let j = 0; j< this.cols; j++) {
+                this.data[i][j] -= n.data[i][j];
             }
         }
         return this;
@@ -106,12 +115,5 @@ class Matrix {
         return ans;
     }
 }
-var test = () => {
-    let a = new Matrix(6,7); // Hehe LOL *SiX sEVeNnNnnN*
-    a.randomize();
-    let b = a.transpose();
-    console.table(a.data);
-    console.table(b.data);
-}
-test();
+
 export {Matrix};
